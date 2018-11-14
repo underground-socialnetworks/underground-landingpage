@@ -6,25 +6,6 @@ const axios = require('axios');
 
 class App extends Component {
 
-    // state = {users: []}
-    //
-    // componentDidMount() {
-    //   fetch('/users')
-    //     .then(res => res.json())
-    //     .then(users => this.setState({ users }));
-    // }
-    //
-    // render() {
-    //   return (
-    //     <div className="App">
-    //       <h1>Users</h1>
-    //       {this.state.users.map(user =>
-    //         <div key={user.id}>{user.username}</div>
-    //       )}
-    //     </div>
-    //   );
-    // }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -33,13 +14,6 @@ class App extends Component {
             email: ""
         };
     }
-
-    // onClickSignUp() {
-    //     //   fetch('/users')
-    //     //     .then(res => res.json())
-    //     //     .then(users => this.setState({ users }));
-    //     post('/signup');
-    // }
 
     handleChangeFirstName = (e) => {
         this.setState({firstName: e.target.value});
@@ -68,6 +42,23 @@ class App extends Component {
         });
     }
 
+    renderForm() {
+        return (
+            <div className="App-header" id="signUpForm">
+                <form action="/signup" method="post" >
+                    First name:<br/>
+                    <input type="text" name="firstname" onChange={(e)=>{this.handleChangeFirstName(e)}}/><br/>
+                    Last name:<br/>
+                    <input type="text" name="lastname" onChange={(e)=>{this.handleChangeLastName(e)}}/><br/>
+                    Email:<br/>
+                    <input type="text" name="email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
+                    <button type="submit" onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
+                </form>
+            </div>
+        )
+
+    }
+
     render() {
         return (
             <div className="App">
@@ -76,16 +67,9 @@ class App extends Component {
                         Hate the MTA?<br/>
                         Join the revolution today
                     </p>
-                    <form action="/signup" method="post" >
-                        First name:<br/>
-                        <input type="text" name="firstname" onChange={(e)=>{this.handleChangeFirstName(e)}}/><br/>
-                        Last name:<br/>
-                        <input type="text" name="lastname" onChange={(e)=>{this.handleChangeLastName(e)}}/><br/>
-                        Email:<br/>
-                        <input type="text" name="email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
-                        <button type="submit" onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
-                    </form>
+                    <button type="button" onClick={()=>{document.getElementById('signUpForm').scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"})}}>JOIN</button>
                 </header>
+                {this.renderForm()}
             </div>
         );
     }
