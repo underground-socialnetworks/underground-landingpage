@@ -42,3 +42,110 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+
+
+
+
+
+
+
+.signin {
+	width: 100vw;
+	height: 100vh;
+	color: #fff;
+	background: linear-gradient(-45deg, #000000, #24A2B7, #ffffff);
+	background-size: 500% 500%;
+	-webkit-animation: Gradient 15s ease infinite;
+	-moz-animation: Gradient 15s ease infinite;
+	animation: Gradient 15s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@-moz-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+.signin_title {
+	font-size: 50px;
+	font-weight: lighter;
+	text-align: center;
+	line-height: 200px;
+}
+
+.signin_form {
+	text-align: center;
+}
+
+.signup_input {
+	width: 300px;
+	height: 50px;
+	font-size: 30px;
+	font-weight: bold;
+	background: transparent;
+	border: none;
+	border-bottom: solid white;
+	text-align: center;
+	margin-bottom: 20px;
+    color: white;
+}
+
+.signup_input:focus{
+    outline: none;
+}
+
+.signup_input::placeholder{
+    color: white;
+}
+
+.signup_input:focus::placeholder{
+    color: transparent;
+}
+
+.signup_btn {
+    color: black;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.signup_btn:focus{
+    outline: none;
+    color: white;
+    background-color: black;
+}
