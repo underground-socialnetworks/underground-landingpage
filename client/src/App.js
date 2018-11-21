@@ -11,26 +11,21 @@ class App extends Component {
             firstName: "",
             lastName: "",
             email: "",
-            submitted: false
+            submitted: false,
+            error: false
         };
     }
 
-    // componentDidMount() {
-    //     if (this.state.submitted) {
-    //         document.getElementById('completePage').scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
-    //     }
-    // }
-
     handleChangeFirstName = (e) => {
-        this.setState({firstName: e.target.value});
+        this.setState({ firstName: e.target.value, error: false });
     }
 
     handleChangeLastName = (e) => {
-        this.setState({lastName: e.target.value});
+        this.setState({ lastName: e.target.value, error: false });
     }
 
     handleChangeEmail = (e) => {
-        this.setState({email: e.target.value});
+        this.setState({ email: e.target.value, error: false });
     }
 
     handleSubmit = (e) => {
@@ -51,6 +46,8 @@ class App extends Component {
                 .catch((error) => {
                     console.log(error);
             });
+        } else {
+            this.setState({ error: true });
         }
     }
 
@@ -59,8 +56,11 @@ class App extends Component {
             <div className="App-header" id="signUpForm">
                 <form action="/signup" method="post" >
                     <input type="text" name="firstname" className="signup_input" placeholder="First name" onChange={(e)=>{this.handleChangeFirstName(e)}}/><br/>
+                    {this.state.error && !this.state.firstName ? <div className="error_message">Please enter your first name</div> : <div className="error_message"></div>}
                     <input type="text" name="lastname" className="signup_input" placeholder="Last name" onChange={(e)=>{this.handleChangeLastName(e)}}/><br/>
+                    {this.state.error && !this.state.lastName ? <div className="error_message">Please enter your last name</div> : <div className="error_message"></div>}
                     <input type="text" name="email" className="signup_input" placeholder="Email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
+                    {this.state.error && !this.state.email ? <div className="error_message">Please enter your email</div> : <div className="error_message"></div>}
                     <button type="submit" className="signup_btn" onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
                 </form>
             </div>
