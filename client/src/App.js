@@ -28,9 +28,16 @@ class App extends Component {
         this.setState({ email: e.target.value, error: false });
     }
 
+    validateEmail = (email) => {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        if (this.state.firstName && this.state.lastName && this.state.email) {
+        if (!this.validateEmail(this.state.email)) {
+            this.setState({ error: true, email: "" });
+        } else if (this.state.firstName && this.state.lastName && this.state.email) {
             axios.post('/signup', {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
@@ -59,7 +66,7 @@ class App extends Component {
                     {this.state.error && !this.state.firstName ? <div className="error_message">Please enter your first name</div> : <div className="error_message"></div>}
                     <input type="text" name="lastname" className="signup_input" placeholder="Last name" onChange={(e)=>{this.handleChangeLastName(e)}}/><br/>
                     {this.state.error && !this.state.lastName ? <div className="error_message">Please enter your last name</div> : <div className="error_message"></div>}
-                    <input type="text" name="email" className="signup_input" placeholder="Email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
+                    <input type="email" name="email" className="signup_input" placeholder="Email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
                     {this.state.error && !this.state.email ? <div className="error_message">Please enter your email</div> : <div className="error_message"></div>}
                     <button type="submit" className="signup_btn" onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
                 </form>
@@ -70,11 +77,8 @@ class App extends Component {
     renderComplete() {
         return (
             <div className="App-header" id="completePage">
-                <p>
-                    Congratulations!<br/>
-                    You have joined the revolution<br/>
-                    Expect to hear from us soon
-                </p>
+                <h2>Thank you for signing up!</h2>
+                <h3>Expect to hear from us soon</h3>
             </div>
         )
     }
@@ -83,11 +87,10 @@ class App extends Component {
         return (
             <div className="App">
                 <header className="App-header">
-                    <p>
-                        Hate the MTA?<br/>
-                        Join the revolution today
-                    </p>
-                    <button type="button" className="signup_btn" onClick={()=>{document.getElementById('signUpForm').scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"})}}>JOIN</button>
+                    <h1>Tired of the MTA??</h1>
+                    <h2>So are we....</h2>
+                    <p>Underground NYC is the first live app that lets you know everything there is to your commute.</p>
+                    <button type="button" className="signup_btn" onClick={()=>{document.getElementById('signUpForm').scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"})}}>JOIN NOW</button>
                 </header>
                 {this.renderForm()}
                 {this.state.submitted? this.renderComplete() : null}

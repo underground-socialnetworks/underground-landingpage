@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-image: url("luca-bravo-613000-unsplash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 /* .App-logo {
@@ -8,7 +12,7 @@
 } */
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -68,7 +72,7 @@
 }
 
 .signup_btn {
-    color: #282c34;
+    color: brown;
     background-color: white;
     border: none;
     border-radius: 20px;
@@ -80,14 +84,14 @@
 .signup_btn:focus{
     outline: none;
     color: white;
-    background-color: #282c34;
+    background-color: brown;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
-    -webkit-box-shadow: 0 0 0 30px #282c33 inset;
+    -webkit-box-shadow: 0 0 0 30px brown inset;
     -webkit-text-fill-color: white !important;
 }
 
