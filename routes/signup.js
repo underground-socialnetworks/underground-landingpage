@@ -3,12 +3,16 @@ var router = express.Router();
 var Backendless = require('backendless');
 
 router.post('/', function(req, res, next) {
+    console.log(req.body);
     var firstName = req.body.firstName;
     var lastName = req.body.lastName;
     var email = req.body.email;
     // email validation is already done with javascript in the front end.
     // Might want to consider server side validation as well as javascript can be disabled.
     saveWaitlist(res, firstName + " " + lastName, email);
+
+	// Comment out this line:
+//    res.send('respond with a resource');
 });
 
 function saveWaitlist(res, name,email){
