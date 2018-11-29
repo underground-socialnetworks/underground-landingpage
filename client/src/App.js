@@ -12,6 +12,7 @@ class App extends Component {
             lastName: "",
             email: "",
             submitted: false,
+            clicked: false,
             error: false
         };
     }
@@ -38,6 +39,7 @@ class App extends Component {
         if (!this.validateEmail(this.state.email)) {
             this.setState({ error: true, email: "" });
         } else if (this.state.firstName && this.state.lastName && this.state.email) {
+            this.setState({ clicked: true });
             axios.post('/signup', {
                     firstName: this.state.firstName,
                     lastName: this.state.lastName,
@@ -45,7 +47,7 @@ class App extends Component {
                 })
                 .then((response) => {
                     if (response.status === 200) {
-                        this.setState({ submitted: true }, () => {
+                        this.setState({ submitted: true, clicked: false }, () => {
                             document.getElementById('completePage').scrollIntoView({block: "start", inline: "nearest", behavior: "smooth"});
                         });
                     }
@@ -68,7 +70,7 @@ class App extends Component {
                     {this.state.error && !this.state.lastName ? <div className="error_message">Please enter your last name</div> : <div className="error_message"></div>}
                     <input type="email" name="email" className="signup_input" placeholder="Email" onChange={(e)=>{this.handleChangeEmail(e)}}/><br/>
                     {this.state.error && !this.state.email ? <div className="error_message">Please enter your email</div> : <div className="error_message"></div>}
-                    <button type="submit" className="signup_btn" onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
+                    <button type="submit" className="signup_btn" disabled={this.state.clicked} onClick={(e)=>{this.handleSubmit(e)}}>Sign Up</button>
                 </form>
             </div>
         )

@@ -76,7 +76,8 @@
     padding: 10px;
 }
 
-.signup_btn:focus{
+.signup_btn:focus,
+.signup_btn:disabled{
     outline: none;
     color: white;
     background-color: brown;
