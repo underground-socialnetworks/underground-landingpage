@@ -15,7 +15,6 @@ To install dependencies for server
 ```
 git clone https://github.com/underground-socialnetworks/underground-landingpage.git
 cd underground-landingpage
-cd server
 npm install
 ```
 
@@ -31,7 +30,6 @@ npm install
 To run server
 
 ```
-cd server
 PORT=3001 nodemon bin/www
 ```
 
